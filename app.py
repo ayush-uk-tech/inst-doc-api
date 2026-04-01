@@ -272,5 +272,22 @@ def test_api():
         return jsonify({"error": str(e)}), 500
 
 
+# Root route for Vercel
+@app.route('/')
+def index():
+    """
+    Root endpoint
+    """
+    return jsonify({
+        "message": "PDF Generator API is running",
+        "version": "1.0.0",
+        "endpoints": {
+            "health": "/api/health",
+            "generate": "/api/generate-pdf",
+            "test": "/api/test"
+        }
+    })
+
+# For local development
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
